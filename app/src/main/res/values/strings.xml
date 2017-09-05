@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BookWorm</string>
+
+    <string name="tools_book_name">Book Name</string>
+</resources>
