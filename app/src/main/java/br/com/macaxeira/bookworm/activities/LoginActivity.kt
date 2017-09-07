@@ -1,13 +1,18 @@
 package br.com.macaxeira.bookworm.activities
 
 import android.content.Intent
+import android.content.ServiceConnection
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import br.com.macaxeira.bookworm.BuildConfig
 import br.com.macaxeira.bookworm.R
+import br.com.macaxeira.bookworm.network.GoogleBooksClient
+import br.com.macaxeira.bookworm.services.ServiceGenerator
+import br.com.macaxeira.bookworm.utils.Utils
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -58,8 +63,12 @@ class LoginActivity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
     }
 
     private fun signIn() {
-        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        if (Utils.isOnline(this)) {
+            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        } else {
+            Toast.makeText(this, R.string.toast_disconnected, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun signOut() {

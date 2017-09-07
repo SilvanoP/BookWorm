@@ -2,4 +2,7 @@
     <string name="app_name">BookWorm</string>
 
     <string name="tools_book_name">Book Name</string>
+
+    <string name="toast_disconnected">You are offline, please verify you connection!</string>
+    <string name="toast_empty_books">Sorry, could not retrieve any books!</string>
 </resources>

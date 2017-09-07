@@ -2,8 +2,8 @@ package br.com.macaxeira.bookworm.models
 
 import com.google.gson.annotations.SerializedName
 
-class BaseResponse {
+class BookshelfBaseResponse {
 
     @SerializedName("items")
-    var books: List<BookListResponse> = ArrayList()
+    var bookshelves: List<Bookshelf> = ArrayList()
 }
