@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">BookWorm</string>
 
-    <string name="tools_book_name">Book Name</string>
+    <!-- General -->
+    <string name="my_books">My Books</string>
+    <string name="sign_in">Please sign in!</string>
 
+    <!-- Tools string, for app design -->
+    <string name="tools_book_author">Author Name</string>
+    <string name="tools_book_name">Book Name</string>
+    <string name="tools_book_rate_number">0.0</string>
+    <string name="tools_book_status_name">currently reading</string>
+
+    <!-- Toast Mensages -->
+    <string name="toast_auth_error">Authentication Failed! Please try again!</string>
     <string name="toast_disconnected">You are offline, please verify you connection!</string>
     <string name="toast_empty_books">Sorry, could not retrieve any books!</string>
 </resources>

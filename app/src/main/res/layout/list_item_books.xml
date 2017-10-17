@@ -19,12 +19,72 @@
         android:id="@+id/itemBookNameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_default_value"
+        android:layout_marginTop="@dimen/margin_list_item_beside_cover_value"
+        android:layout_marginStart="@dimen/margin_default_value"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="@string/tools_book_name"
         tools:layout_editor_absoluteX="8dp"
         />
+
+    <TextView
+        android:id="@+id/itemBookAuthorText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default_value"
+        app:layout_constraintTop_toBottomOf="@id/itemBookNameText"
+        app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/tools_book_author"
+        />
+
+    <TextView
+        android:id="@+id/itemBookRateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default_value"
+        android:layout_marginStart="@dimen/margin_default_value"
+        android:layout_marginBottom="@dimen/margin_default_value"
+        app:layout_constraintTop_toBottomOf="@id/itemBookAuthorText"
+        app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
+        tools:text="@string/tools_book_rate_number"
+        />
+
+    <RatingBar
+        android:id="@+id/itemBookRateBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default_value"
+        android:layout_marginStart="@dimen/margin_default_value"
+        android:layout_marginBottom="@dimen/margin_default_value"
+        app:layout_constraintTop_toBottomOf="@id/itemBookAuthorText"
+        app:layout_constraintStart_toEndOf="@id/itemBookRateText"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        />
+
+    <ImageView
+        android:id="@+id/itemBookStatusImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default_value"
+        android:layout_marginStart="@dimen/margin_default_value"
+        android:layout_marginBottom="@dimen/margin_default_value"
+        app:layout_constraintTop_toTopOf="@id/itemBookRateBar"
+        app:layout_constraintStart_toEndOf="@id/itemBookRateBar"
+        app:layout_constraintBottom_toBottomOf="@id/itemBookRateBar"
+        tools:src="@drawable/ic_currently_reading"
+        />
+
+    <TextView
+        android:id="@+id/itemBookStatusText"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/itemBookStatusImage"
+        app:layout_constraintStart_toEndOf="@id/itemBookStatusImage"
+        tools:text="@string/tools_book_status_name"
+        />
+
+
 
 </android.support.constraint.ConstraintLayout>

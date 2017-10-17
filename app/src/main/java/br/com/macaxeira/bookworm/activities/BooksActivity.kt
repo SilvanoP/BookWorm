@@ -13,6 +13,7 @@ import br.com.macaxeira.bookworm.models.SearchBookBaseResponse
 import br.com.macaxeira.bookworm.models.Book
 import br.com.macaxeira.bookworm.network.GoogleBooksClient
 import br.com.macaxeira.bookworm.services.ServiceGenerator
+import br.com.macaxeira.bookworm.utils.Constants
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_books.*
 import retrofit2.Call
@@ -23,13 +24,18 @@ class BooksActivity : AppCompatActivity() {
 
     private val BOOKS_STATE_KEY = "BOOKS_STATE_KEY"
 
-    var mBooks: MutableList<Book> = ArrayList()
+    var mBooks: MutableList<Book> = mutableListOf()
+    var mUserId: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
+        title = getText(R.string.my_books)
+
         booksListRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        mUserId = intent.getStringExtra(Constants.INTENT_USER_ID_EXTRA)
 
         if (savedInstanceState!= null) {
             mBooks = savedInstanceState.getParcelableArrayList(BOOKS_STATE_KEY)
@@ -43,31 +49,35 @@ class BooksActivity : AppCompatActivity() {
     }
 
     private fun searchBooks() {
-        val client = ServiceGenerator.createService(GoogleBooksClient::class.java)
+        val userId = mUserId
+        if (userId != null) {
+            val client = ServiceGenerator.createService(GoogleBooksClient::class.java)
 
-        val call = client.searchBooks("lord+rings", BuildConfig.GOOGLE_API_KEY)
-        //val call = client.getBooksFromBookshelf("", 3, BuildConfig.GOOGLE_API_KEY) TODO get user id
-        val callback = object: Callback<SearchBookBaseResponse> {
-            override fun onResponse(call: Call<SearchBookBaseResponse>?, responseSearchBook: Response<SearchBookBaseResponse>?) {
-                val baseResponse = responseSearchBook?.body()
-                if (baseResponse != null) {
-                    mBooks.clear()
-                    for (bookList in baseResponse.books) {
-                        mBooks.add(bookList.book)
+            //val call = client.searchBooks("lord+rings", BuildConfig.GOOGLE_API_KEY)
+            val call = client.getBooksFromBookshelf(userId, 3, BuildConfig.GOOGLE_API_KEY)
+            Log.i("HELLOOOOOOOOOOOOOOOOOO", "Call ${call.request().url()}")
+            val callback = object : Callback<SearchBookBaseResponse> {
+                override fun onResponse(call: Call<SearchBookBaseResponse>?, responseSearchBook: Response<SearchBookBaseResponse>?) {
+                    val baseResponse = responseSearchBook?.body()
+                    if (baseResponse != null) {
+                        mBooks.clear()
+                        for (bookList in baseResponse.books) {
+                            mBooks.add(bookList.book)
+                        }
+                        updateUi()
+                    } else {
+                        Toast.makeText(this@BooksActivity, R.string.toast_empty_books, Toast.LENGTH_SHORT).show()
+                        Log.e("BooksActivity", "Error ${responseSearchBook?.code()}: ${Gson().toJson(responseSearchBook)}")
                     }
-                    updateUi()
-                } else {
-                    Toast.makeText(this@BooksActivity, R.string.toast_empty_books, Toast.LENGTH_SHORT).show()
-                    Log.e("BooksActivity", "Error ${responseSearchBook?.code()}: ${Gson().toJson(responseSearchBook)}")
+                }
+
+                override fun onFailure(call: Call<SearchBookBaseResponse>?, t: Throwable?) {
+                    t?.printStackTrace()
                 }
             }
 
-            override fun onFailure(call: Call<SearchBookBaseResponse>?, t: Throwable?) {
-                t?.printStackTrace()
-            }
+            call.enqueue(callback)
         }
-
-        call.enqueue(callback)
     }
 
     fun updateUi() {

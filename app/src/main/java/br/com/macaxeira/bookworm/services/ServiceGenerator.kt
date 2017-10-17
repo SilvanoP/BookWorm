@@ -1,6 +1,8 @@
 package br.com.macaxeira.bookworm.services
 
 import android.text.TextUtils
+import android.util.Log
+import br.com.macaxeira.bookworm.network.AuthorizationInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -20,7 +22,12 @@ class ServiceGenerator {
 
         fun <S> createService(serviceClass: Class<S>, authToken: String?): S {
             if (!TextUtils.isEmpty(authToken)) {
-                // TODO create interceptor when needed
+                val interceptor = AuthorizationInterceptor(authToken)
+
+                if (!httpClient.interceptors().contains(interceptor)) {
+                    httpClient.addInterceptor(interceptor)
+                    builder.client(httpClient.build())
+                }
             }
 
             val retrofit = builder.build()

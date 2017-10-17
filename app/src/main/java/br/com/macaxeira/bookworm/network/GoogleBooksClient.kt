@@ -22,8 +22,13 @@ interface GoogleBooksClient {
             @Query("key") apiKey: String
     ) : Call<BookListResponse>
 
+    @GET("books/v1/mylibrary/bookshelves")
+    fun getBookshelves(
+            @Query("key") apiKey: String
+    ) : Call<BookshelfBaseResponse>
+
     @GET("books/v1/users/{user_id}/bookshelves")
-    fun getBookshelfs(
+    fun getUserBookshelfves(
             @Path("user_id") userId: String,
             @Query("key") apiKey: String
     ) : Call<BookshelfBaseResponse>
