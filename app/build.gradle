@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "br.com.macaxeira.bookworm"
         minSdkVersion 23
@@ -29,12 +29,14 @@ android {
 }
 
 dependencies {
+    implementation "com.android.support:design:$google_support_version"
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile "com.android.support:appcompat-v7:$google_support_version"
     compile "com.android.support:recyclerview-v7:$google_support_version"
+    compile "com.android.support:cardview-v7:$google_support_version"
     compile "com.google.firebase:firebase-auth:$firebase_version"
     compile "com.google.android.gms:play-services-auth:$firebase_version"
     compile 'com.google.api-client:google-api-client:1.22.0'

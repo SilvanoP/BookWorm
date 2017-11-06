@@ -4,12 +4,12 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class ImageLinks(): Parcelable {
-    var smallThumbnail: String? = ""
-    var thumbnail: String? = ""
-    var small: String? = ""
-    var medium: String? = ""
-    var large: String? = ""
-    var extraLarge: String? = ""
+    var smallThumbnail: String? = null
+    var thumbnail: String? = null
+    var small: String? = null
+    var medium: String? = null
+    var large: String? = null
+    var extraLarge: String? = null
 
     constructor(parcel: Parcel?) : this() {
         smallThumbnail = parcel?.readString()

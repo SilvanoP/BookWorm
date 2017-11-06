@@ -2,17 +2,34 @@
     <string name="app_name">BookWorm</string>
 
     <!-- General -->
+    <string name="currently_reading">Currently Reading</string>
+    <string name="empty_book_list">You have no books in this bookshelf</string>
     <string name="my_books">My Books</string>
+    <string name="book_rating_count">%1$d rating(s)</string>
+    <string name="read">Read</string>
     <string name="sign_in">Please sign in!</string>
+    <string name="to_read">To Read</string>
+
+    <!-- Components Desc -->
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+    <string name="image_book_cover">Book Cover</string>
+    <string name="image_book_status">Reading Status</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- Tools string, for app design -->
     <string name="tools_book_author">Author Name</string>
     <string name="tools_book_name">Book Name</string>
     <string name="tools_book_rate_number">0.0</string>
+    <string name="tools_book_rate_total">10000 ratings</string>
     <string name="tools_book_status_name">currently reading</string>
 
     <!-- Toast Mensages -->
     <string name="toast_auth_error">Authentication Failed! Please try again!</string>
     <string name="toast_disconnected">You are offline, please verify you connection!</string>
     <string name="toast_empty_books">Sorry, could not retrieve any books!</string>
+    <string name="title_activity_example_nav">ExampleNavActivity</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

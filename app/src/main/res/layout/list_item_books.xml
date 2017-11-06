@@ -1,90 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    app:cardUseCompatPadding="true"
+    app:cardElevation="@dimen/card_default_elevation"
+    app:cardCornerRadius="@dimen/card_default_corner_radius"
+    app:cardPreventCornerOverlap="true">
 
-    <ImageView
-        android:id="@+id/itemBookCoverImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_default_value"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:src="@drawable/error_loading_image"
-        tools:layout_editor_absoluteX="16dp" />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
 
-    <TextView
-        android:id="@+id/itemBookNameText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_list_item_beside_cover_value"
-        android:layout_marginStart="@dimen/margin_default_value"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/tools_book_name"
-        tools:layout_editor_absoluteX="8dp"
-        />
+        <ImageView
+            android:id="@+id/itemBookCoverImage"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="@dimen/margin_list_item_value"
+            android:layout_marginBottom="@dimen/margin_default_value"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/image_book_cover"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/error_loading_image"
+            tools:layout_editor_absoluteX="16dp" />
 
-    <TextView
-        android:id="@+id/itemBookAuthorText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default_value"
-        app:layout_constraintTop_toBottomOf="@id/itemBookNameText"
-        app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/tools_book_author"
-        />
+        <TextView
+            android:id="@+id/itemBookNameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_list_item_value"
+            android:layout_marginStart="@dimen/margin_default_value"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_book_name"
+            tools:layout_editor_absoluteX="8dp"
+            />
 
-    <TextView
-        android:id="@+id/itemBookRateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default_value"
-        android:layout_marginStart="@dimen/margin_default_value"
-        android:layout_marginBottom="@dimen/margin_default_value"
-        app:layout_constraintTop_toBottomOf="@id/itemBookAuthorText"
-        app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
-        tools:text="@string/tools_book_rate_number"
-        />
+        <TextView
+            android:id="@+id/itemBookAuthorText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_value"
+            app:layout_constraintTop_toBottomOf="@id/itemBookNameText"
+            app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/tools_book_author"
+            />
 
-    <RatingBar
-        android:id="@+id/itemBookRateBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default_value"
-        android:layout_marginStart="@dimen/margin_default_value"
-        android:layout_marginBottom="@dimen/margin_default_value"
-        app:layout_constraintTop_toBottomOf="@id/itemBookAuthorText"
-        app:layout_constraintStart_toEndOf="@id/itemBookRateText"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        />
+        <TextView
+            android:id="@+id/itemBookRateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default_value"
+            android:layout_marginStart="@dimen/margin_default_value"
+            android:layout_marginBottom="@dimen/margin_default_value"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/itemBookCoverImage"
+            tools:text="@string/tools_book_rate_number"
+            />
 
-    <ImageView
-        android:id="@+id/itemBookStatusImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_default_value"
-        android:layout_marginStart="@dimen/margin_default_value"
-        android:layout_marginBottom="@dimen/margin_default_value"
-        app:layout_constraintTop_toTopOf="@id/itemBookRateBar"
-        app:layout_constraintStart_toEndOf="@id/itemBookRateBar"
-        app:layout_constraintBottom_toBottomOf="@id/itemBookRateBar"
-        tools:src="@drawable/ic_currently_reading"
-        />
+        <RatingBar
+            android:id="@+id/itemBookRateBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_very_small"
+            app:layout_constraintTop_toTopOf="@id/itemBookRateText"
+            app:layout_constraintStart_toEndOf="@id/itemBookRateText"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            tools:layout_editor_absoluteX="137dp" />
 
-    <TextView
-        android:id="@+id/itemBookStatusText"
-        android:layout_width="55dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@id/itemBookStatusImage"
-        app:layout_constraintStart_toEndOf="@id/itemBookStatusImage"
-        tools:text="@string/tools_book_status_name"
-        />
+        <TextView
+            android:id="@+id/itemBookTotalRatesText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_small"
+            app:layout_constraintTop_toBottomOf="@id/itemBookRateBar"
+            app:layout_constraintStart_toStartOf="@id/itemBookRateBar"
+            tools:text="@string/tools_book_rate_total"
+            />
 
+        <ImageView
+            android:id="@+id/itemBookStatusImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_default_value"
+            android:layout_marginBottom="@dimen/margin_default_value"
+            android:contentDescription="@string/image_book_status"
+            app:layout_constraintTop_toTopOf="@id/itemBookRateBar"
+            app:layout_constraintStart_toEndOf="@id/itemBookRateBar"
+            tools:src="@drawable/ic_currently_reading"
+            />
 
+        <TextView
+            android:id="@+id/itemBookStatusText"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@id/itemBookStatusImage"
+            app:layout_constraintStart_toEndOf="@id/itemBookStatusImage"
+            tools:text="@string/tools_book_status_name"
+            />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

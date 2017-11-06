@@ -32,10 +32,10 @@ class BooksListAdapter(val mContext: Context, val mBooks: List<Book>):
         fun bind(book: Book) {
             var url: String? = null
             val imageLinks = book.imageLinks
-            if (imageLinks != null) {
-                url = imageLinks.thumbnail
-                if (imageLinks.medium != null) {
-                    url = imageLinks.medium
+            if (url == null && imageLinks != null) {
+                url = imageLinks.small
+                if (TextUtils.isEmpty(url)) {
+                    url = imageLinks.thumbnail
                 }
             }
 
@@ -57,6 +57,7 @@ class BooksListAdapter(val mContext: Context, val mBooks: List<Book>):
             itemView.itemBookAuthorText.text = authors
             itemView.itemBookRateText.text = book.averageRating.toString()
             itemView.itemBookRateBar.rating = book.averageRating.toFloat()
+            itemView.itemBookTotalRatesText.text = mContext.resources.getString(R.string.book_rating_count, book.ratingsCount)
 
             //FIXME input logic for different status icons and status text
             itemView.itemBookStatusImage.setImageResource(R.drawable.ic_currently_reading)
